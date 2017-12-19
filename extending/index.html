@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+
+	<title>Extending - Angular Schema Form</title>
+
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/highlight.css">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="..">Angular Schema Form</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="active">
+                        <a href="./">Extending</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../knownlimitations/">Limitations</a>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="next" href="..">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../knownlimitations/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#extending-schema-form">Extending Schema Form</a></li>
+        
+            <li><a href="#adding-a-field">Adding a Field</a></li>
+        
+            <li><a href="#decorators">Decorators</a></li>
+        
+    
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="extending-schema-form">Extending Schema Form</h1>
+<p>Schema Form is designed to be easily extended and there are two basic ways to do it:</p>
+<ol>
+<li>Add a new type of field</li>
+<li>Add a new decorator</li>
+</ol>
+<h2 id="adding-a-field">Adding a Field</h2>
+<p>To add a new field to Schema Form you need to create a new form type and match that form type with
+a template snippet. To do this you use the <code>schemaFormDecoratorsProvider.addMapping()</code> function.</p>
+<p>Ex. from the <a href="https://github.com/Textalk/angular-schema-form-datepicker/blob/master/src/bootstrap-datepicker.js#L18">datepicker add-on</a></p>
+<pre><code class="javascript"> schemaFormDecoratorsProvider.addMapping(
+  'bootstrapDecorator',
+  'datepicker',
+  'directives/decorators/bootstrap/datepicker/datepicker.html'
+);
+</code></pre>
+
+<p>The second argument is the name of your new form type, in this case <code>datepicker</code>, and the third is
+the template we bind to it (the first is the decorator, use <code>bootstrapDecorator</code> unless you know
+what you are doing).</p>
+<p>What this means is that a form definition like this:</p>
+<pre><code class="javascript">$scope.form = [
+  {
+    key: &quot;birthday&quot;,
+    type: &quot;datepicker&quot;
+  }
+];
+</code></pre>
+
+<p>...will result in the <code>datepicker.html</code> template to be used to render that field in the form.</p>
+<p>But wait, where is all the code? Basically it's then up to the template to use directives to
+implement whatever it likes to do. It does have some help though, lets look at template example and
+go through the basics.</p>
+<p>This is sort of the template for the datepicker:</p>
+<pre><code class="html">&lt;div class=&quot;form-group&quot; ng-class=&quot;{'has-error': hasError()}&quot;&gt;
+  &lt;label class=&quot;control-label&quot; ng-show=&quot;showTitle()&quot;&gt;{{form.title}}&lt;/label&gt;
+
+  &lt;input ng-show=&quot;form.key&quot;
+         style=&quot;background-color: white&quot;
+         type=&quot;text&quot;
+         class=&quot;form-control&quot;
+         schema-validate=&quot;form&quot;
+         ng-model=&quot;$$value$$&quot;
+         pick-a-date
+         min-date=&quot;form.minDate&quot;
+         max-date=&quot;form.maxDate&quot;
+         format=&quot;form.format&quot; /&gt;
+
+  &lt;span class=&quot;help-block&quot; sf-message=&quot;form.description&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h3 id="whats-on-the-scope">What's on the scope?</h3>
+<p>Each form field will be rendered inside a decorator directive, created by the
+<code>schemaFormDecorators</code> factory service, <em>do</em>
+<a href="https://github.com/Textalk/angular-schema-form/blob/master/src/services/decorators.js#L33">check the source</a>.</p>
+<p>This means you have several helper functions and values on scope, most important of this <code>form</code>. The
+<code>form</code> variable contains the merged form definition for that field, i.e. your supplied form object +
+the defaults from the schema (it also has its part of the schema under <em>form.schema</em>).
+This is how you define and use new form field options, whatever is set on the form object is
+available here for you to act on.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>form</td>
+<td>Form definition object</td>
+</tr>
+<tr>
+<td>showTitle()</td>
+<td>Shorthand for <code>form &amp;&amp; form.notitle !== true &amp;&amp; form.title</code></td>
+</tr>
+<tr>
+<td>ngModel</td>
+<td>The ngModel controller, this will be on scope if you use either the directive <code>schema-validate</code> or <code>sf-array</code></td>
+</tr>
+<tr>
+<td>evalInScope(expr, locals)</td>
+<td>Eval supplied expression, ie scope.$eval</td>
+</tr>
+<tr>
+<td>evalExpr(expr, locals)</td>
+<td>Eval an expression in the parent scope of the main <code>sf-schema</code> directive.</td>
+</tr>
+<tr>
+<td>interp(expr, locals)</td>
+<td>Interpolate an expression which may or may not contain expression <code>{{ }}</code> sequences</td>
+</tr>
+<tr>
+<td>buttonClick($event, form)</td>
+<td>Use this with ng-click to execute form.onClick</td>
+</tr>
+<tr>
+<td>hasSuccess()</td>
+<td>Shorthand for <code>ngModel.$valid &amp;&amp; (!ngModel.$pristine || !ngModel.$isEmpty(ngModel.$modelValue))</code></td>
+</tr>
+<tr>
+<td>hasError()</td>
+<td>Shorthand for <code>ngModel.$invalid &amp;&amp; !ngModel.$pristine</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="deprecation-warning">Deprecation warning</h4>
+<p>There is still a <code>errorMessage</code> function on scope but it's been deprecated. Please use the
+<code>sf-message</code> directive instead.</p>
+<h3 id="the-magic-value">The magic $$value$$</h3>
+<p>Schema Form wants to play nice with the built in Angular directives for form. Especially <code>ng-model</code>
+which we want to handle the two way binding against our model value. Also by using <code>ng-model</code> we
+get all the nice validation states from the <code>ngModelController</code> and <code>FormController</code> that we all
+know and love.</p>
+<p>To get that working properly we had to resort to a bit of trickery, right before we let Angular
+compile the field template we do a simple string replacement of <code>$$value$$</code> and replace that
+with the path to the current form field on the model, i.e. <code>form.key</code>.</p>
+<p>So <code>ng-model="$$value$$"</code> becomes something like <code>ng-model="model['person']['address']['street']"</code>,
+you can see this if you inspect the final form in the browser.</p>
+<p>So basically always have a <code>ng-model="$$value$$"</code> (Pro tip: ng-model is fine on any element, put
+  it on the same div as your custom directive and require the ngModelController for full control).</p>
+<h3 id="schema-validate-directive">schema-validate directive</h3>
+<p><code>schema-validate</code> is a directive that you should put on the same element as your <code>ng-model</code>. It is
+responsible for validating the value against the schema using <a href="https://github.com/geraintluff/tv4">tv4js</a>
+It takes the form definition as an argument.</p>
+<h3 id="sf-message-directive">sf-message directive</h3>
+<p>Error messages are nice, and the best way to get them is via the <code>sf-message</code> directive. It usually
+takes <code>form.description</code> as an argument so it can show that until an error occurs.</p>
+<h3 id="setting-up-schema-defaults">Setting up schema defaults</h3>
+<p>So you got this shiny new add-on that adds a fancy field type, but feel a bit bummed out that you
+need to specify it in the form definition all the time? Fear not because you can also add a "rule"
+to map certain types and conditions in the schema to default to your type.</p>
+<p>You do this by adding to the <code>schemaFormProvider.defaults</code> object. The <code>schemaFormProvider.defaults</code>
+is an object with a key for each type <em>in JSON Schema</em> with a array of functions as its value.</p>
+<pre><code class="javscript">var defaults = {
+  string: [],
+  object: [],
+  number: [],
+  integer: [],
+  boolean: [],
+  array: []
+};
+</code></pre>
+
+<p>When schema form traverses the JSON Schema to create default form definitions it first checks the
+<em>JSON Schema type</em> and then calls on each function in the corresponding list <em>in order</em> until a
+function actually returns something. That is then used as a defualt.</p>
+<p>This is the function that makes it a datepicker if its a string and has format "date" or "date-time":</p>
+<pre><code class="javascript">var datepicker = function(name, schema, options) {
+  if (schema.type === 'string' &amp;&amp; (schema.format === 'date' || schema.format === 'date-time')) {
+    var f = schemaFormProvider.stdFormObj(name, schema, options);
+    f.key = options.path;
+    f.type = 'datepicker';
+    options.lookup[sfPathProvider.stringify(options.path)] = f;
+    return f;
+  }
+};
+
+// Put it first in the list of functions
+schemaFormProvider.defaults.string.unshift(datepicker);
+</code></pre>
+
+<h3 id="sharing-your-add-on-with-the-world">Sharing your add-on with the world</h3>
+<p>So you made an add-on, why not share it with us? On the front page,
+<a href="http://textalk.github.io/angular-schema-form/#third-party-addons">http://textalk.github.io/angular-schema-form/</a>, we
+maintain a list of add ons based on a query of the bower register, and we love to see your add-on
+there.</p>
+<p>Any <a href="http://bower.io">bower</a> package with a name starting with <code>angular-schema-form-</code> or that has
+the <code>keyword</code> <code>angular-schema-form-add-on</code> in its <code>bower.json</code> will be picked up. It's cached so
+there can be a delay of a day or so.</p>
+<p>So <a href="http://bower.io/docs/creating-packages/">make a bower package</a>, add the keyword
+<code>angular-schema-form-add-on</code> and <a href="http://bower.io/docs/creating-packages/#register">register it</a>!</p>
+<h2 id="decorators">Decorators</h2>
+<p>Decorators are a second way to extend Schema Form, the thought being that you should easily be able
+to change <em>every</em> field. Maybe you like it old school and want to use bootstrap 2. Or maybe you like
+to generate a table with the data instead? Right now there are no other decorators than bootstrap 3.</p>
+<p>Basically a <em>decorator</em> sets up all the mappings between form types and their respective templates
+using the <code>schemaFormDecoratorsProvider.createDecorator()</code> function.</p>
+<pre><code class="javascript">var base = 'directives/decorators/bootstrap/';
+
+schemaFormDecoratorsProvider.createDecorator('bootstrapDecorator', {
+  textarea: base + 'textarea.html',
+  fieldset: base + 'fieldset.html',
+  array: base + 'array.html',
+  tabarray: base + 'tabarray.html',
+  tabs: base + 'tabs.html',
+  section: base + 'section.html',
+  conditional: base + 'section.html',
+  actions: base + 'actions.html',
+  select: base + 'select.html',
+  checkbox: base + 'checkbox.html',
+  checkboxes: base + 'checkboxes.html',
+  number: base + 'default.html',
+  password: base + 'default.html',
+  submit: base + 'submit.html',
+  button: base + 'submit.html',
+  radios: base + 'radios.html',
+  'radios-inline': base + 'radios-inline.html',
+  radiobuttons: base + 'radio-buttons.html',
+  help: base + 'help.html',
+  'default': base + 'default.html'
+}, [
+  function(form) {
+    if (form.readonly &amp;&amp; form.key &amp;&amp; form.type !== 'fieldset') {
+      return base + 'readonly.html';
+    }
+  }
+]);
+</code></pre>
+
+<p><code>schemaFormDecoratorsProvider.createDecorator(name, mapping, rules)</code> takes a name argument, a mapping object
+(type -&gt; template) and an optional list of rule functions.</p>
+<p>When the decorator is trying to match a form type against a tempate it first executes all the rules
+in order. If one returns that is used as template, otherwise it checks the mappings.</p></div>
+            
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+
+        <script src="../js/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/highlight.pack.js"></script>
+        <script>var base_url = '..';</script>
+        <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+        <script src="../js/base.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            From here you can search these documents. Enter
+                            your search terms below.
+                        </p>
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                            </div>
+                        </form>
+                        <div id="mkdocs-search-results"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
