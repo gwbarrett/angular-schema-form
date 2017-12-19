@@ -54,7 +54,7 @@
                 
                 
                     <li class="active">
-                        <a href=".">Documentation</a>
+                        <a href=".">Docs</a>
                     </li>
                 
                 
@@ -66,7 +66,7 @@
                 
                 
                     <li >
-                        <a href="knownlimitations/">Known Limitations</a>
+                        <a href="knownlimitations/">Limitations</a>
                     </li>
                 
                 
@@ -150,7 +150,7 @@
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="documentation">Documentation</h1>
+<h1 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h1>
 <ol>
 <li><a href="#basic-usage">Basic Usage</a></li>
 <li><a href="#handling-submit">Handling Submit</a></li>
@@ -199,9 +199,9 @@
 <li><a href="#deprecated-fields">Deprecated fields</a></li>
 <li><a href="extending/">Extending Schema Form</a></li>
 </ol>
-<h2 id="basic-usage">Basic Usage</h2>
+<h2 id="basic-usage">Basic Usage<a class="headerlink" href="#basic-usage" title="Permanent link">&para;</a></h2>
 <p>First, expose your schema, form, and model to the $scope.
-Don't forget to load the <code>schemaForm</code> module.</p>
+Don&rsquo;t forget to load the <code>schemaForm</code> module.</p>
 <pre><code class="javascript">angular.module('myModule', ['schemaForm'])
        .controller('FormController', function($scope) {
   $scope.schema = {
@@ -233,7 +233,7 @@ Don't forget to load the <code>schemaForm</code> module.</p>
 &lt;/div&gt;
 </code></pre>
 
-<p>The <code>sfSchema</code> directive doesn't need to be on a form tag, in fact it can be quite useful
+<p>The <code>sfSchema</code> directive doesn&rsquo;t need to be on a form tag, in fact it can be quite useful
 to set it on a div or some such inside the form instead. Especially if you like to prefix or suffix the
 form with buttons or fields that are hard coded.</p>
 <p>Example with custom submit buttons:</p>
@@ -247,9 +247,9 @@ form with buttons or fields that are hard coded.</p>
 &lt;/div&gt;
 </code></pre>
 
-<h2 id="handling-submit">Handling Submit</h2>
+<h2 id="handling-submit">Handling Submit<a class="headerlink" href="#handling-submit" title="Permanent link">&para;</a></h2>
 <p>Schema Form does not care what you do with your data, to handle form submit
-the recomended way is to use the <code>ng-submit</code> directive. It's also recomended
+the recomended way is to use the <code>ng-submit</code> directive. It&rsquo;s also recomended
 to use a <code>name</code> attribute on your form so you can access the
 <a href="https://code.angularjs.org/1.3.0-beta.15/docs/api/ng/type/form.FormController">FormController</a>
 and check if the form is valid or not.</p>
@@ -302,7 +302,7 @@ entire form and show any errors.</p>
 &lt;/div&gt;
 </code></pre>
 
-<h2 id="updating-form">Updating Form</h2>
+<h2 id="updating-form">Updating Form<a class="headerlink" href="#updating-form" title="Permanent link">&para;</a></h2>
 <p>Schema Form watches <code>sf-form</code> and <code>sf-schema</code> and will redraw the form if one or both changes, but
 only if they change completly, i.e. not the same object and/or form instance. For performance
 reasons we have opted to not watch schema and form deeply. So if you have updated a part of the
@@ -316,7 +316,7 @@ schema or the form definition you can trigger a redraw by issuing the event <cod
 }
 </code></pre>
 
-<h2 id="global-options">Global Options</h2>
+<h2 id="global-options">Global Options<a class="headerlink" href="#global-options" title="Permanent link">&para;</a></h2>
 <p>Schema Form also have two options you can set globally via the <code>sf-options</code>
 attribute which should be placed along side <code>sf-schema</code>.</p>
 <p><code>sf-options</code> takes an object with the following possible attributes.</p>
@@ -377,7 +377,7 @@ i.e. changing the entire form to validate on blur.</p>
 &lt;/div&gt;
 </code></pre>
 
-<h2 id="validation-messages">Validation Messages</h2>
+<h2 id="validation-messages">Validation Messages<a class="headerlink" href="#validation-messages" title="Permanent link">&para;</a></h2>
 <p>We use <a href="https://github.com/geraintluff/tv4">tv4</a> to validate the form and all of the
 validation messages match up <a href="https://github.com/geraintluff/tv4/blob/master/source/api.js">tv4 error codes</a>.</p>
 <p>There are several ways to change the default validation messages.</p>
@@ -387,8 +387,8 @@ validation messages match up <a href="https://github.com/geraintluff/tv4/blob/ma
 <li>Use the global option <code>validationMessage</code></li>
 <li>Use the form field option <code>validationMessage</code></li>
 </ol>
-<p>If a specific validation error code can't be found in the form field option, schema form looks at
-the global option, if none is there it looks at it's own defaults and if all fails it will instead
+<p>If a specific validation error code can&rsquo;t be found in the form field option, schema form looks at
+the global option, if none is there it looks at it&rsquo;s own defaults and if all fails it will instead
 use the the message under the error code <code>'default'</code></p>
 <p>Ex of form field option.</p>
 <pre><code class="javascript">var form = [
@@ -411,7 +411,7 @@ use the the message under the error code <code>'default'</code></p>
 &lt;/div&gt;
 </code></pre>
 
-<h3 id="message-interpolation">Message Interpolation</h3>
+<h3 id="message-interpolation">Message Interpolation<a class="headerlink" href="#message-interpolation" title="Permanent link">&para;</a></h3>
 <p>Having a good validation message is hard, sometimes you need to reference the actual value, title,
 or constraint that you hit. Schema Form supports interpolation of error messages to make this a
 little bit easier.</p>
@@ -461,7 +461,7 @@ little bit easier.</p>
      }
    }
  ];</code></p>
-<h3 id="taking-over-functions-as-validationmessages">Taking over: functions as validationMessages</h3>
+<h3 id="taking-over-functions-as-validationmessages">Taking over: functions as validationMessages<a class="headerlink" href="#taking-over-functions-as-validationmessages" title="Permanent link">&para;</a></h3>
 <p>If you really need to control the validaton messages and interpolation is not enough (like say
 your using <a href="https://github.com/SlexAxton/Jed">Jed</a> for gettext translations) you can supply a
 function instead of a particular message or the entire validationMessage object.</p>
@@ -491,14 +491,14 @@ used for interpolation, see table above.</p>
 ];
 </code></pre>
 
-<h2 id="custom-validation">Custom Validation</h2>
+<h2 id="custom-validation">Custom Validation<a class="headerlink" href="#custom-validation" title="Permanent link">&para;</a></h2>
 <p>Sometimes the validation you want is tricky to express in a JSON Schema
 or Schema Form does not support it (yet), like <code>anyOf</code> and <code>oneOf</code>.</p>
 <p>Other times you really need to ask the backend, maybe to check that the a username is not already
 taken or some other constraint that only the backend can know about.</p>
-<h3 id="inject-errors-into-form-aka-backend-validation">Inject errors into form aka backend validation</h3>
+<h3 id="inject-errors-into-form-aka-backend-validation">Inject errors into form aka backend validation<a class="headerlink" href="#inject-errors-into-form-aka-backend-validation" title="Permanent link">&para;</a></h3>
 <p>To support validation outside of the form, most commonly on the backend, schema form lets you
-injecting arbitrary validationMessages to any field and setting it's validity.</p>
+injecting arbitrary validationMessages to any field and setting it&rsquo;s validity.</p>
 <p>This is done via an event that starts with <code>schemaForm.error.</code> and ends with the key to the field.
 It also takes two arguments, the first being the error code, the second being either a
 validation message or a boolean that sets validity, specifying a validation message automatically
@@ -527,13 +527,13 @@ optional validation message.</p>
 
 <p>This will invalidate the field and therefore the form and show the error message where it normally
 pops up, under the field for instance.</p>
-<p>There is a catch though, schema form can't know when this field is valid so you have to tell it by
+<p>There is a catch though, schema form can&rsquo;t know when this field is valid so you have to tell it by
 sending an event again, this time switch out the validation message for validity of the field,
 i.e. <code>true</code>.</p>
 <pre><code class="js">scope.$broadcast('schemaForm.error.name','usernameAlreadyTaken',true);
 </code></pre>
 
-<p>You can also pre-populate the validation messages if you don't want to send them in the event.</p>
+<p>You can also pre-populate the validation messages if you don&rsquo;t want to send them in the event.</p>
 <p>Form</p>
 <pre><code class="json">[
   {
@@ -553,7 +553,7 @@ i.e. <code>true</code>.</p>
 scope.$broadcast('schemaForm.error.name','tv4-302',false);
 </code></pre>
 
-<h3 id="using-ngmodelcontroller">Using ngModelController</h3>
+<h3 id="using-ngmodelcontroller">Using ngModelController<a class="headerlink" href="#using-ngmodelcontroller" title="Permanent link">&para;</a></h3>
 <p>Another way to validate your fields is to use Angulars built in support for validator functions
 and async validators via the <a href="https://docs.angularjs.org/api/ng/type/ngModel.NgModelController">ngModelController</a></p>
 <p>Schema Form can expose the <code>ngModelController</code> on a field for a function supplied with the form
@@ -563,7 +563,7 @@ will be picked up.</p>
 <p>Note that <code>$validators</code> and <code>$asyncValidators</code> are Angular 1.3+ only.</p>
 <p>See Angular docs for details and there is also an example you can look at here
 <a href="./../examples/custom-validators.html">examples/custom-validators.html</a></p>
-<h4 id="validators">$validators</h4>
+<h4 id="validators">$validators<a class="headerlink" href="#validators" title="Permanent link">&para;</a></h4>
 <p>Custom validator functions are added to the <code>$validators</code> object and their attribute name is the
 error code, so to specify a error message you also need to use.</p>
 <pre><code class="js">[
@@ -584,7 +584,7 @@ error code, so to specify a error message you also need to use.</p>
 ]
 </code></pre>
 
-<h4 id="asyncvalidators">$asyncValidators</h4>
+<h4 id="asyncvalidators">$asyncValidators<a class="headerlink" href="#asyncvalidators" title="Permanent link">&para;</a></h4>
 <p>Async validators are basically the same as their synchronous counterparts, but instead you return
 a promise that resolves or rejects.</p>
 <pre><code class="js">[
@@ -610,9 +610,9 @@ a promise that resolves or rejects.</p>
 ]
 </code></pre>
 
-<h2 id="form-defaults-in-schema">Form defaults in schema</h2>
+<h2 id="form-defaults-in-schema">Form defaults in schema<a class="headerlink" href="#form-defaults-in-schema" title="Permanent link">&para;</a></h2>
 <p>Its recommended to split presentation and validation into a form definition and a json schema. But
-if you for some reason can't do this, but <em>do</em> have the power to change the schema, you can supply form
+if you for some reason can&rsquo;t do this, but <em>do</em> have the power to change the schema, you can supply form
 default values within the schema using the custom attribute <code>x-schema-form</code>. <code>x-schema-form</code> should
 be a form object and acts as form definition defaults for that field.</p>
 <p>Example schema.</p>
@@ -631,7 +631,7 @@ be a form object and acts as form definition defaults for that field.</p>
 }
 </code></pre>
 
-<h2 id="form-types">Form types</h2>
+<h2 id="form-types">Form types<a class="headerlink" href="#form-types" title="Permanent link">&para;</a></h2>
 <p>Schema Form currently supports the following form field types out of the box:</p>
 <table>
 <thead>
@@ -723,11 +723,11 @@ be a form object and acts as form definition defaults for that field.</p>
 </tr>
 </tbody>
 </table>
-<p>More field types can be added, for instance a "datepicker" type can be added by
+<p>More field types can be added, for instance a &ldquo;datepicker&rdquo; type can be added by
 including the <a href="https://github.com/Textalk/angular-schema-form-datepicker">datepicker addon</a>, see
 the <a href="http://textalk.github.io/angular-schema-form/#third-party-addons">front page</a> for an updated
 list.</p>
-<h2 id="default-form-types">Default form types</h2>
+<h2 id="default-form-types">Default form types<a class="headerlink" href="#default-form-types" title="Permanent link">&para;</a></h2>
 <p>Schema Form defaults to certain types of form fields depending on the schema for
 a property.</p>
 <table>
@@ -739,47 +739,47 @@ a property.</p>
 </thead>
 <tbody>
 <tr>
-<td align="left">"type": "string"</td>
+<td align="left">&ldquo;type&rdquo;: &ldquo;string&rdquo;</td>
 <td align="center">text</td>
 </tr>
 <tr>
-<td align="left">"type": "number"</td>
+<td align="left">&ldquo;type&rdquo;: &ldquo;number&rdquo;</td>
 <td align="center">number</td>
 </tr>
 <tr>
-<td align="left">"type": "integer"</td>
+<td align="left">&ldquo;type&rdquo;: &ldquo;integer&rdquo;</td>
 <td align="center">number</td>
 </tr>
 <tr>
-<td align="left">"type": "boolean"</td>
+<td align="left">&ldquo;type&rdquo;: &ldquo;boolean&rdquo;</td>
 <td align="center">checkbox</td>
 </tr>
 <tr>
-<td align="left">"type": "object"</td>
+<td align="left">&ldquo;type&rdquo;: &ldquo;object&rdquo;</td>
 <td align="center">fieldset</td>
 </tr>
 <tr>
-<td align="left">"type": "string" and a "enum"</td>
+<td align="left">&ldquo;type&rdquo;: &ldquo;string&rdquo; and a &ldquo;enum&rdquo;</td>
 <td align="center">select</td>
 </tr>
 <tr>
-<td align="left">"type": "array" and a "enum" in array type</td>
+<td align="left">&ldquo;type&rdquo;: &ldquo;array&rdquo; and a &ldquo;enum&rdquo; in array type</td>
 <td align="center">checkboxes</td>
 </tr>
 <tr>
-<td align="left">"type": "array"</td>
+<td align="left">&ldquo;type&rdquo;: &ldquo;array&rdquo;</td>
 <td align="center">array</td>
 </tr>
 </tbody>
 </table>
-<h2 id="form-definitions">Form definitions</h2>
-<p>If you don't supply a form definition, it will default to rendering the after the defaults taken
+<h2 id="form-definitions">Form definitions<a class="headerlink" href="#form-definitions" title="Permanent link">&para;</a></h2>
+<p>If you don&rsquo;t supply a form definition, it will default to rendering the after the defaults taken
 from the schema.</p>
 <p>A form definition is a list where the items can be
   * A star, <code>"*"</code>
   * A string with the dot notated name/path to a property, <code>"name"</code>
   * An object with that defines the options for a form field., <code>{ key: "name" }</code></p>
-<p>The star, <code>"*"</code> means "use the default for the entire schema" and is useful when you want the
+<p>The star, <code>"*"</code> means &ldquo;use the default for the entire schema&rdquo; and is useful when you want the
 defaults plus an additional button.</p>
 <p>ex.</p>
 <pre><code class="javascript">[
@@ -789,8 +789,8 @@ defaults plus an additional button.</p>
 </code></pre>
 
 <p>The string notation, <code>"name"</code>,  is just a shortcut for the object notation <code>{ key: "name" }</code>
-where key denotes what part of the schema we're creating a form field for.</p>
-<h2 id="overriding-field-types-and-order">Overriding field types and order</h2>
+where key denotes what part of the schema we&rsquo;re creating a form field for.</p>
+<h2 id="overriding-field-types-and-order">Overriding field types and order<a class="headerlink" href="#overriding-field-types-and-order" title="Permanent link">&para;</a></h2>
 <p>The order of the fields is technically undefined since the order of attributes on an javascript
 object (which the schema ends up being) is undefined. In practice it kind of works though.
 If you need to override the order of the forms, or just want to be sure, specify a form definition.</p>
@@ -833,7 +833,7 @@ ex.</p>
 ]
 </code></pre>
 
-<h2 id="standard-options">Standard Options</h2>
+<h2 id="standard-options">Standard Options<a class="headerlink" href="#standard-options" title="Permanent link">&para;</a></h2>
 <p>General options most field types can handle:</p>
 <pre><code class="javascript">{
   key: &quot;address.street&quot;,      // The dot notatin to the attribute on the model
@@ -859,7 +859,7 @@ ex.</p>
 }
 </code></pre>
 
-<h3 id="onchange">onChange</h3>
+<h3 id="onchange">onChange<a class="headerlink" href="#onchange" title="Permanent link">&para;</a></h3>
 <p>The <code>onChange</code> option can be used with most fields and its value should be
 either an angular expression, as a string, or a function. If its an expression
 it will be evaluated in the parent scope of the <code>sf-schema</code> directive with
@@ -880,10 +880,10 @@ be called with  <code>modelValue</code> and <code>form</code> as first and secon
 ];
 </code></pre>
 
-<h3 id="validation-messages_1">Validation Messages</h3>
+<h3 id="validation-messages_1">Validation Messages<a class="headerlink" href="#validation-messages_1" title="Permanent link">&para;</a></h3>
 <p>The validation message can be a string, an object with error codes as key and messages as values
 or a custom message function, see <a href="#validation-messages">Validation Messages</a> for the details.</p>
-<h3 id="inline-feedback-icons">Inline feedback icons</h3>
+<h3 id="inline-feedback-icons">Inline feedback icons<a class="headerlink" href="#inline-feedback-icons" title="Permanent link">&para;</a></h3>
 <p><em>input</em> and <em>textarea</em> based fields get inline status icons by default. A check
 when everything is valid and a cross when there are validation errors.</p>
 <p>This can be turned off or configured to other icons. To turn off just
@@ -925,8 +925,8 @@ is <code>{ 'glyphicon': true, 'glyphicon-ok': hasSuccess(), 'glyphicon-remove': 
 </tr>
 </tbody>
 </table>
-<h3 id="ngmodeloptions">ngModelOptions</h3>
-<p>Angular 1.3 introduces a new directive, <em>ngModelOptions</em>, which let's you set
+<h3 id="ngmodeloptions">ngModelOptions<a class="headerlink" href="#ngmodeloptions" title="Permanent link">&para;</a></h3>
+<p>Angular 1.3 introduces a new directive, <em>ngModelOptions</em>, which let&rsquo;s you set
 a couple of options that change how the directive <em>ng-model</em> works. Schema Form
 uses <em>ng-model</em> to bind against fields and therefore changing theses options
 might be usefule for you.</p>
@@ -941,8 +941,8 @@ you get form fields that validate on blur instead of directly on change.</p>
 
 <p>See <a href="#global-options">Global Options</a> for an example how you set entire form
 to validate on blur.</p>
-<h3 id="copyvalueto">copyValueTo</h3>
-<p>This option has a very specific use case. Imagine you have the same option in several places, but you want them to be controlled from just one field. You specify what keys the value should be copied to, and the <em>viewValue</em> will be copied to these keys on the model. <strong>Note: changing the model directly will not copy the value, it's intended for copying user input</strong>. The recieving fields can be shown, but the intent for them is to be hidden.</p>
+<h3 id="copyvalueto">copyValueTo<a class="headerlink" href="#copyvalueto" title="Permanent link">&para;</a></h3>
+<p>This option has a very specific use case. Imagine you have the same option in several places, but you want them to be controlled from just one field. You specify what keys the value should be copied to, and the <em>viewValue</em> will be copied to these keys on the model. <strong>Note: changing the model directly will not copy the value, it&rsquo;s intended for copying user input</strong>. The recieving fields can be shown, but the intent for them is to be hidden.</p>
 <p>Ex.</p>
 <pre><code class="javascript">{
   key: &quot;email.main&quot;,
@@ -950,7 +950,7 @@ to validate on blur.</p>
 }
 </code></pre>
 
-<h3 id="condition">condition</h3>
+<h3 id="condition">condition<a class="headerlink" href="#condition" title="Permanent link">&para;</a></h3>
 <p>The <code>condition</code> option lets you hide or show a field depending on an angular expression. Beneath
 the surface it uses <code>ng-if</code> so the hidden field is <em>not</em> part of the form.</p>
 <p><code>condition</code> should be a string with an angular expression. If that expression evaluates as thruthy
@@ -1040,8 +1040,8 @@ scope.</p>
 }
 </code></pre>
 
-<p>Note that arrays inside arrays won't work with conditions.</p>
-<h3 id="destroystrategy">destroyStrategy</h3>
+<p>Note that arrays inside arrays won&rsquo;t work with conditions.</p>
+<h3 id="destroystrategy">destroyStrategy<a class="headerlink" href="#destroystrategy" title="Permanent link">&para;</a></h3>
 <p>By default, when a field is removed from the DOM and the <code>$destroy</code> event is broadcast, this happens
 if you use the <code>condition</code> option, the schema-validate directive will update the model to set the
 field value to <code>undefined</code>. This can be overridden by setting the destroyStrategy on a field, or as a
@@ -1052,10 +1052,10 @@ global option, to one of the strings <code>"null"</code>, <code>"empty"</code> ,
 <p><code>"remove"</code> deletes the property. This is the default.</p>
 <p><code>"retain"</code> keeps the value of the property event though the field is no longer in the form or being
 vaidated before submit.</p>
-<p>If you'd like to set the destroyStrategy for
+<p>If you&rsquo;d like to set the destroyStrategy for
 an entire form, add it to the <a href="#global-options">globalOptions</a></p>
-<h2 id="specific-options-and-types">Specific options and types</h2>
-<h3 id="input-group-addons">input group addons</h3>
+<h2 id="specific-options-and-types">Specific options and types<a class="headerlink" href="#specific-options-and-types" title="Permanent link">&para;</a></h2>
+<h3 id="input-group-addons">input group addons<a class="headerlink" href="#input-group-addons" title="Permanent link">&para;</a></h3>
 <p><em>input</em> and <em>textarea</em> types can also have
 <a href="http://getbootstrap.com/components/#input-groups">bootstrap input groups</a>.</p>
 <p>You can add them with the option <code>fieldAddonLeft</code> and <code>fieldAddonRight</code> which both takes a snippet
@@ -1068,8 +1068,8 @@ of html.</p>
 ]
 </code></pre>
 
-<h3 id="fieldset-and-section">fieldset and section</h3>
-<p><em>fieldset</em> and <em>section</em> doesn't need a key. You can create generic groups with them.
+<h3 id="fieldset-and-section">fieldset and section<a class="headerlink" href="#fieldset-and-section" title="Permanent link">&para;</a></h3>
+<p><em>fieldset</em> and <em>section</em> doesn&rsquo;t need a key. You can create generic groups with them.
 They do need a list of <code>items</code> to have as children.</p>
 <pre><code class="javascript">{
   type: &quot;fieldset&quot;,
@@ -1080,7 +1080,7 @@ They do need a list of <code>items</code> to have as children.</p>
 }
 </code></pre>
 
-<h3 id="select-and-checkboxes">select and checkboxes</h3>
+<h3 id="select-and-checkboxes">select and checkboxes<a class="headerlink" href="#select-and-checkboxes" title="Permanent link">&para;</a></h3>
 <p><em>select</em> and <em>checkboxes</em> can take an attribute, <code>titleMap</code>, which defines a name
 and a value. The value is bound to the model while the name is used for display.
 In the case of <em>checkboxes</em> the names of the titleMap can be HTML.</p>
@@ -1121,7 +1121,7 @@ element to the select.</p>
 }
 </code></pre>
 
-<h3 id="actions">actions</h3>
+<h3 id="actions">actions<a class="headerlink" href="#actions" title="Permanent link">&para;</a></h3>
 <p><em>actions</em> behaves the same as fieldset, but can only handle buttons and submits as children.</p>
 <pre><code class="javascript">{
   type: &quot;actions&quot;,
@@ -1143,7 +1143,7 @@ We can change this with <code>style</code> attribute:</p>
 }
 </code></pre>
 
-<h3 id="button-and-submit">button and submit</h3>
+<h3 id="button-and-submit">button and submit<a class="headerlink" href="#button-and-submit" title="Permanent link">&para;</a></h3>
 <p><em>button</em> and <em>submit</em> can have a <code>onClick</code> attribute that either a function <em>or</em> a
 string with an angular expression, as with ng-click. The expression is evaluated in the parent scope of
 the <code>sf-schema</code> directive.</p>
@@ -1172,12 +1172,12 @@ We can change this with <code>style</code> attribute:</p>
 [
 </code></pre>
 
-<h3 id="radios-and-radiobuttons">radios and radiobuttons</h3>
+<h3 id="radios-and-radiobuttons">radios and radiobuttons<a class="headerlink" href="#radios-and-radiobuttons" title="Permanent link">&para;</a></h3>
 <p>Both type <em>radios</em> and <em>radiobuttons</em> work the same way.
 They take a <code>titleMap</code> and renders ordinary radio buttons or bootstrap 3 buttons
-inline. It's a cosmetic choice.</p>
+inline. It&rsquo;s a cosmetic choice.</p>
 <p>The <code>titleMap</code> is either a list or an object, see <a href="#select-and-checkboxes">select and checkboxes</a>
-for details. The "name" part in the <code>titleMap</code> can be HTML.</p>
+for details. The &ldquo;name&rdquo; part in the <code>titleMap</code> can be HTML.</p>
 <p>Ex.</p>
 <pre><code class="javascript">function FormCtrl($scope) {
   $scope.schema = {
@@ -1203,7 +1203,7 @@ for details. The "name" part in the <code>titleMap</code> can be HTML.</p>
 }
 </code></pre>
 
-<p>The actual schema property it binds doesn't need to be a string with an enum.
+<p>The actual schema property it binds doesn&rsquo;t need to be a string with an enum.
 Here is an example creating a yes no radio buttons that binds to a boolean.</p>
 <p>Ex.</p>
 <pre><code class="javascript">function FormCtrl($scope) {
@@ -1259,8 +1259,8 @@ We can change this with <code>style</code> attribute:</p>
 }
 </code></pre>
 
-<h3 id="help">help</h3>
-<p>Help fields is not really a field, but instead let's you insert arbitrary HTML
+<h3 id="help">help<a class="headerlink" href="#help" title="Permanent link">&para;</a></h3>
+<p>Help fields is not really a field, but instead let&rsquo;s you insert arbitrary HTML
 into a form, suitable for help texts with links etc.</p>
 <p>The get a help field you need to specify the type <code>help</code> and have a html
 snippet as a string in the option <code>helpvalue</code></p>
@@ -1286,13 +1286,13 @@ snippet as a string in the option <code>helpvalue</code></p>
 }
 </code></pre>
 
-<h3 id="template">template</h3>
+<h3 id="template">template<a class="headerlink" href="#template" title="Permanent link">&para;</a></h3>
 <p><code>template</code> fields are like <code>help</code> fields but instead of arbitrary html you can insert or refer to
 an angular template to be inserted where the field should go. There is one catch though and that
 is that the scope is that of the decorator directive and its inside the isolated scope of the
 <code>sf-schema</code> directive, so anything you like to access in the template should be put on the form,
-which is available in template. It's basically a simple one shot version of add-ons, so see the
-see the docs on <a href="extending/">Extending Schema Form</a> for details on what is on scope and what's up
+which is available in template. It&rsquo;s basically a simple one shot version of add-ons, so see the
+see the docs on <a href="extending/">Extending Schema Form</a> for details on what is on scope and what&rsquo;s up
 with <code>$$value$$</code></p>
 <p>The <code>template</code> type should either have a <code>template</code> or a <code>templateUrl</code> option.</p>
 <p>Ex.</p>
@@ -1314,7 +1314,7 @@ with <code>$$value$$</code></p>
 }
 </code></pre>
 
-<h3 id="tabs">tabs</h3>
+<h3 id="tabs">tabs<a class="headerlink" href="#tabs" title="Permanent link">&para;</a></h3>
 <p>The <code>tabs</code> form type lets you split your form into tabs. It is similar to
 <code>fieldset</code> in that it just changes the presentation of the form. <code>tabs</code>
 takes a option, also called <code>tabs</code>, that is a list of tab objects. Each tab
@@ -1367,20 +1367,20 @@ object consist of a <em>title</em> and a <em>items</em> list of form objects.</p
 }
 </code></pre>
 
-<h3 id="array">array</h3>
+<h3 id="array">array<a class="headerlink" href="#array" title="Permanent link">&para;</a></h3>
 <p>The <code>array</code> form type is the default for the schema type <code>array</code>.
 The schema for an array has the property <code>"items"</code> which in the JSON Schema
 specification can be either another schema (i.e. and object), or a list of
 schemas. Only a schema is supported by Schema Form, and not the list of schemas.</p>
 <p>The <em>form</em> definition has the option <code>items</code> that should be a list
 of form objects.</p>
-<p>The rendered list of subforms each have a <em>"Remove"</em> button and at the bottom there
-is an <em>"Add"</em> button. The default <em>"Add"</em> button has class btn-default and text Add. Both
+<p>The rendered list of subforms each have a <em>&ldquo;Remove&rdquo;</em> button and at the bottom there
+is an <em>&ldquo;Add&rdquo;</em> button. The default <em>&ldquo;Add&rdquo;</em> button has class btn-default and text Add. Both
 could be changed using attribute <code>add</code>, see example below.</p>
 <p>If you like to have drag and drop reordering of arrays you also need
 <a href="https://github.com/angular-ui/ui-sortable">ui-sortable</a> and its dependencies
 <a href="http://jqueryui.com/">jQueryUI</a>, see <em>ui-sortable</em> documentation for details of
-what parts of jQueryUI that is needed. You can safely ignore these if you don't
+what parts of jQueryUI that is needed. You can safely ignore these if you don&rsquo;t
 need the reordering.</p>
 <p>In the form definition you can refer to properties of an array item by the empty
 bracket notation. In the <code>key</code> simply end the name of the array with <code>[]</code></p>
@@ -1497,17 +1497,17 @@ form definition, also example of <code>startEmpty</code>.</p>
 }
 </code></pre>
 
-<h3 id="tabarray">tabarray</h3>
+<h3 id="tabarray">tabarray<a class="headerlink" href="#tabarray" title="Permanent link">&para;</a></h3>
 <p>The <code>tabarray</code> form type behaves the same way and has the same options as
 <code>array</code> but instead of rendering a list it renders a tab per item in list.</p>
 <p>By default the tabs are on the left side (follows the default in JSON Form),
-but with the option <code>tabType</code> you can change that to eiter <em>"top"</em> or <em>"right"</em>
+but with the option <code>tabType</code> you can change that to eiter <em>&ldquo;top&rdquo;</em> or <em>&ldquo;right&rdquo;</em>
 as well.</p>
-<p>Every tab page has a <em>"Remove"</em> button. The default <em>"Remove"</em> button has class btn-default
+<p>Every tab page has a <em>&ldquo;Remove&rdquo;</em> button. The default <em>&ldquo;Remove&rdquo;</em> button has class btn-default
 and text Remove. Both could be changed using attribute <code>remove</code>, see example below.</p>
-<p>In this case we have an <em>"Add"</em> link, not an <em>"Add"</em> button. Therefore, the attribute <code>add</code>
+<p>In this case we have an <em>&ldquo;Add&rdquo;</em> link, not an <em>&ldquo;Add&rdquo;</em> button. Therefore, the attribute <code>add</code>
 only changes the text of the link. See example below.</p>
-<p>Bootstrap 3 doesn't have side tabs so to get proper styling you need to add the
+<p>Bootstrap 3 doesn&rsquo;t have side tabs so to get proper styling you need to add the
 dependency <a href="https://github.com/dbtek/bootstrap-vertical-tabs">bootstrap-vertical-tabs</a>.
 It is not needed for tabs on top.</p>
 <p>The <code>title</code> option is a bit special in <code>tabarray</code>, it defines the title
@@ -1528,9 +1528,9 @@ Ex:</p>
 
 </code></pre>
 
-<h4 id="deprecation-warning">Deprecation Warning</h4>
+<h4 id="deprecation-warning">Deprecation Warning<a class="headerlink" href="#deprecation-warning" title="Permanent link">&para;</a></h4>
 <p>Before version 0.8.0 the entire title was evaluated as an expression and not interpolated.
-If you weren't using expressions in your form titles then no changes are needed.</p>
+If you weren&rsquo;t using expressions in your form titles then no changes are needed.</p>
 <p>However, if your tabarray titles contain implicit Angular expressions like this:</p>
 <pre><code class="js">    {
       &quot;form&quot;: [
@@ -1543,7 +1543,7 @@ If you weren't using expressions in your form titles then no changes are needed.
 </code></pre>
 
 <p>Then you should change this to explicit expressions by wrapping them with the Angular expression
-delimiter "{{ }}":</p>
+delimiter &ldquo;{{ }}&rdquo;:</p>
 <pre><code class="js">    {
       &quot;form&quot;: [
         {
@@ -1600,12 +1600,12 @@ delimiter "{{ }}":</p>
 }
 </code></pre>
 
-<h2 id="post-process-function">Post process function</h2>
-<p>If you like to use <code>["*"]</code> as a form, or aren't in control of the form definitions
+<h2 id="post-process-function">Post process function<a class="headerlink" href="#post-process-function" title="Permanent link">&para;</a></h2>
+<p>If you like to use <code>["*"]</code> as a form, or aren&rsquo;t in control of the form definitions
 but really need to change or add something you can register a <em>post process</em>
 function with the <code>schemaForm</code> service provider. The post process function
 gets one argument, the final form merged with the defaults from the schema just
-before it's rendered, and should return a form.</p>
+before it&rsquo;s rendered, and should return a form.</p>
 <p>Ex. Reverse all forms</p>
 <pre><code class="javascript">angular.module('myModule', ['schemaForm']).config(function(schemaFormProvider){
 
@@ -1617,7 +1617,7 @@ before it's rendered, and should return a form.</p>
 });
 </code></pre>
 
-<h2 id="events">Events</h2>
+<h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>
 <p>Events are emitted or broadcast at various points in the process of rendering or validating the
 form. Below is a list of these events and how they are propagated.</p>
 <table>
@@ -1634,7 +1634,7 @@ form. Below is a list of these events and how they are propagated.</p>
 <td align="center"><code>sf-render-finished</code></td>
 <td align="center">After form is rendered</td>
 <td align="center">emit</td>
-<td align="center">The sf-schema directives's element</td>
+<td align="center">The sf-schema directives&rsquo;s element</td>
 </tr>
 </tbody>
 </table>
@@ -1660,16 +1660,16 @@ form. Below is a list of these events and how they are propagated.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="manual-field-insertion">Manual field insertion</h3>
+<h3 id="manual-field-insertion">Manual field insertion<a class="headerlink" href="#manual-field-insertion" title="Permanent link">&para;</a></h3>
 <p>There is a limited feature for controlling manually where a generated field should go so you can
 ,as an example, wrap it in custom html. Consider the feature experimental.</p>
 <p>It has a number of drawbacks though.</p>
 <ol>
 <li>You can only insert fields that are in the root level of your form definition, i.e. not inside fieldset, arrays etc.</li>
-<li>Generated fields are always last in the form so if you don't supply slots for all of your top level fields the rest goes below.</li>
-<li>To match "keys" of forms we match against the internal array format, hence the key "name" becomes "['name']" and "foo.bar" becomes "['foo']['bar']"</li>
+<li>Generated fields are always last in the form so if you don&rsquo;t supply slots for all of your top level fields the rest goes below.</li>
+<li>To match &ldquo;keys&rdquo; of forms we match against the internal array format, hence the key &ldquo;name&rdquo; becomes &ldquo;[&lsquo;name&rsquo;]&rdquo; and &ldquo;foo.bar&rdquo; becomes &ldquo;[&lsquo;foo&rsquo;][&lsquo;bar&rsquo;]&rdquo;</li>
 </ol>
-<p>Define "slots" for the generated field by adding an element with the attribute <code>sf-insert-field</code></p>
+<p>Define &ldquo;slots&rdquo; for the generated field by adding an element with the attribute <code>sf-insert-field</code></p>
 <p>ex.</p>
 <pre><code class="js">$scope.form = [
   &quot;name&quot;,
@@ -1689,8 +1689,8 @@ form. Below is a list of these events and how they are propagated.</p>
 &lt;/form&gt;
 </code></pre>
 
-<h2 id="deprecated-fields">Deprecated fields</h2>
-<h3 id="conditional">conditional</h3>
+<h2 id="deprecated-fields">Deprecated fields<a class="headerlink" href="#deprecated-fields" title="Permanent link">&para;</a></h2>
+<h3 id="conditional">conditional<a class="headerlink" href="#conditional" title="Permanent link">&para;</a></h3>
 <p>The <em>conditional</em> type is now deprecated since every form type now supports the form option
 <code>condition</code>.</p>
 <p>A <em>conditional</em> is exactly the same as a <em>section</em>, i.e. a <code>&lt;div&gt;</code> with other form elements in
@@ -1788,7 +1788,7 @@ scope.</p>
 }
 </code></pre>
 
-<p>Note that arrays inside arrays won't work with conditional.</p></div>
+<p>Note that arrays inside arrays won&rsquo;t work with conditional.</p></div>
             
         </div>
 
@@ -1835,5 +1835,5 @@ scope.</p>
 
 <!--
 MkDocs version : 0.15.3
-Build Date UTC : 2017-12-19 19:31:15
+Build Date UTC : 2017-12-19 19:43:34
 -->

@@ -54,7 +54,7 @@
                 
                 
                     <li >
-                        <a href="..">Documentation</a>
+                        <a href="..">Docs</a>
                     </li>
                 
                 
@@ -66,7 +66,7 @@
                 
                 
                     <li >
-                        <a href="../knownlimitations/">Known Limitations</a>
+                        <a href="../knownlimitations/">Limitations</a>
                     </li>
                 
                 
@@ -122,13 +122,13 @@
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="extending-schema-form">Extending Schema Form</h1>
+<h1 id="extending-schema-form">Extending Schema Form<a class="headerlink" href="#extending-schema-form" title="Permanent link">&para;</a></h1>
 <p>Schema Form is designed to be easily extended and there are two basic ways to do it:</p>
 <ol>
 <li>Add a new type of field</li>
 <li>Add a new decorator</li>
 </ol>
-<h2 id="adding-a-field">Adding a Field</h2>
+<h2 id="adding-a-field">Adding a Field<a class="headerlink" href="#adding-a-field" title="Permanent link">&para;</a></h2>
 <p>To add a new field to Schema Form you need to create a new form type and match that form type with
 a template snippet. To do this you use the <code>schemaFormDecoratorsProvider.addMapping()</code> function.</p>
 <p>Ex. from the <a href="https://github.com/Textalk/angular-schema-form-datepicker/blob/master/src/bootstrap-datepicker.js#L18">datepicker add-on</a></p>
@@ -151,8 +151,8 @@ what you are doing).</p>
 ];
 </code></pre>
 
-<p>...will result in the <code>datepicker.html</code> template to be used to render that field in the form.</p>
-<p>But wait, where is all the code? Basically it's then up to the template to use directives to
+<p>&hellip;will result in the <code>datepicker.html</code> template to be used to render that field in the form.</p>
+<p>But wait, where is all the code? Basically it&rsquo;s then up to the template to use directives to
 implement whatever it likes to do. It does have some help though, lets look at template example and
 go through the basics.</p>
 <p>This is sort of the template for the datepicker:</p>
@@ -174,7 +174,7 @@ go through the basics.</p>
 &lt;/div&gt;
 </code></pre>
 
-<h3 id="whats-on-the-scope">What's on the scope?</h3>
+<h3 id="whats-on-the-scope">What&rsquo;s on the scope?<a class="headerlink" href="#whats-on-the-scope" title="Permanent link">&para;</a></h3>
 <p>Each form field will be rendered inside a decorator directive, created by the
 <code>schemaFormDecorators</code> factory service, <em>do</em>
 <a href="https://github.com/Textalk/angular-schema-form/blob/master/src/services/decorators.js#L33">check the source</a>.</p>
@@ -229,10 +229,10 @@ available here for you to act on.</p>
 </tr>
 </tbody>
 </table>
-<h4 id="deprecation-warning">Deprecation warning</h4>
-<p>There is still a <code>errorMessage</code> function on scope but it's been deprecated. Please use the
+<h4 id="deprecation-warning">Deprecation warning<a class="headerlink" href="#deprecation-warning" title="Permanent link">&para;</a></h4>
+<p>There is still a <code>errorMessage</code> function on scope but it&rsquo;s been deprecated. Please use the
 <code>sf-message</code> directive instead.</p>
-<h3 id="the-magic-value">The magic $$value$$</h3>
+<h3 id="the-magic-value">The magic $$value$$<a class="headerlink" href="#the-magic-value" title="Permanent link">&para;</a></h3>
 <p>Schema Form wants to play nice with the built in Angular directives for form. Especially <code>ng-model</code>
 which we want to handle the two way binding against our model value. Also by using <code>ng-model</code> we
 get all the nice validation states from the <code>ngModelController</code> and <code>FormController</code> that we all
@@ -244,16 +244,16 @@ with the path to the current form field on the model, i.e. <code>form.key</code>
 you can see this if you inspect the final form in the browser.</p>
 <p>So basically always have a <code>ng-model="$$value$$"</code> (Pro tip: ng-model is fine on any element, put
   it on the same div as your custom directive and require the ngModelController for full control).</p>
-<h3 id="schema-validate-directive">schema-validate directive</h3>
+<h3 id="schema-validate-directive">schema-validate directive<a class="headerlink" href="#schema-validate-directive" title="Permanent link">&para;</a></h3>
 <p><code>schema-validate</code> is a directive that you should put on the same element as your <code>ng-model</code>. It is
 responsible for validating the value against the schema using <a href="https://github.com/geraintluff/tv4">tv4js</a>
 It takes the form definition as an argument.</p>
-<h3 id="sf-message-directive">sf-message directive</h3>
+<h3 id="sf-message-directive">sf-message directive<a class="headerlink" href="#sf-message-directive" title="Permanent link">&para;</a></h3>
 <p>Error messages are nice, and the best way to get them is via the <code>sf-message</code> directive. It usually
 takes <code>form.description</code> as an argument so it can show that until an error occurs.</p>
-<h3 id="setting-up-schema-defaults">Setting up schema defaults</h3>
+<h3 id="setting-up-schema-defaults">Setting up schema defaults<a class="headerlink" href="#setting-up-schema-defaults" title="Permanent link">&para;</a></h3>
 <p>So you got this shiny new add-on that adds a fancy field type, but feel a bit bummed out that you
-need to specify it in the form definition all the time? Fear not because you can also add a "rule"
+need to specify it in the form definition all the time? Fear not because you can also add a &ldquo;rule&rdquo;
 to map certain types and conditions in the schema to default to your type.</p>
 <p>You do this by adding to the <code>schemaFormProvider.defaults</code> object. The <code>schemaFormProvider.defaults</code>
 is an object with a key for each type <em>in JSON Schema</em> with a array of functions as its value.</p>
@@ -270,7 +270,7 @@ is an object with a key for each type <em>in JSON Schema</em> with a array of fu
 <p>When schema form traverses the JSON Schema to create default form definitions it first checks the
 <em>JSON Schema type</em> and then calls on each function in the corresponding list <em>in order</em> until a
 function actually returns something. That is then used as a defualt.</p>
-<p>This is the function that makes it a datepicker if its a string and has format "date" or "date-time":</p>
+<p>This is the function that makes it a datepicker if its a string and has format &ldquo;date&rdquo; or &ldquo;date-time&rdquo;:</p>
 <pre><code class="javascript">var datepicker = function(name, schema, options) {
   if (schema.type === 'string' &amp;&amp; (schema.format === 'date' || schema.format === 'date-time')) {
     var f = schemaFormProvider.stdFormObj(name, schema, options);
@@ -285,17 +285,17 @@ function actually returns something. That is then used as a defualt.</p>
 schemaFormProvider.defaults.string.unshift(datepicker);
 </code></pre>
 
-<h3 id="sharing-your-add-on-with-the-world">Sharing your add-on with the world</h3>
+<h3 id="sharing-your-add-on-with-the-world">Sharing your add-on with the world<a class="headerlink" href="#sharing-your-add-on-with-the-world" title="Permanent link">&para;</a></h3>
 <p>So you made an add-on, why not share it with us? On the front page,
 <a href="http://textalk.github.io/angular-schema-form/#third-party-addons">http://textalk.github.io/angular-schema-form/</a>, we
 maintain a list of add ons based on a query of the bower register, and we love to see your add-on
 there.</p>
 <p>Any <a href="http://bower.io">bower</a> package with a name starting with <code>angular-schema-form-</code> or that has
-the <code>keyword</code> <code>angular-schema-form-add-on</code> in its <code>bower.json</code> will be picked up. It's cached so
+the <code>keyword</code> <code>angular-schema-form-add-on</code> in its <code>bower.json</code> will be picked up. It&rsquo;s cached so
 there can be a delay of a day or so.</p>
 <p>So <a href="http://bower.io/docs/creating-packages/">make a bower package</a>, add the keyword
 <code>angular-schema-form-add-on</code> and <a href="http://bower.io/docs/creating-packages/#register">register it</a>!</p>
-<h2 id="decorators">Decorators</h2>
+<h2 id="decorators">Decorators<a class="headerlink" href="#decorators" title="Permanent link">&para;</a></h2>
 <p>Decorators are a second way to extend Schema Form, the thought being that you should easily be able
 to change <em>every</em> field. Maybe you like it old school and want to use bootstrap 2. Or maybe you like
 to generate a table with the data instead? Right now there are no other decorators than bootstrap 3.</p>
